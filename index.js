@@ -26,22 +26,16 @@ const s3Client = new S3Client({
 
 // Route to fetch the file securely using GET
 app.post("/get-file", async (req, res) => {
-
-    const fileKey="hexis/4/demo"
+  const fileKey = "hexis/4/demo";
 
   try {
-    // Fetch file metadata to determine content type
     const headCommand = new HeadObjectCommand({
       Bucket: "stoventest2", // Your bucket name
       Key: fileKey,
     });
     const headResult = await s3Client.send(headCommand);
-    console.log(headResult.ContentType)
-    // const contentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
     const contentType = headResult.ContentType || "application/octet-stream";
-    console.log(contentType)
 
-    // Fetch the file stream
     const getCommand = new GetObjectCommand({
       Bucket: "stoventest2", // Your bucket name
       Key: fileKey,
@@ -51,13 +45,11 @@ app.post("/get-file", async (req, res) => {
 
     // Set response headers
     res.setHeader("Content-Type", contentType);
-    res.setHeader("Content-Disposition", `inline; filename="sherin.jpg"`);
+    res.setHeader("Content-Disposition", `attachment; filename="${fileKey.split('/').pop()}"`);
     res.setHeader("Cache-Control", "no-store");
 
-    // Stream the file to the response
     fileStream.pipe(res);
 
-    // Handle streaming errors
     fileStream.on("error", (error) => {
       console.error("Stream error:", error);
       res.status(500).json({ message: "Error streaming the file" });
