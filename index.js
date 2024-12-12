@@ -46,7 +46,7 @@ app.post("/get-file", async (req, res) => {
 
     // Set response headers
     res.setHeader("Content-Type", contentType);
-    res.setHeader("Content-Disposition", `attachment; filename="sherin.jpeg"`);
+    res.setHeader("Content-Disposition", `attachment; filename="${fileKey.split('/').pop()}"`);
     res.setHeader("Cache-Control", "no-store");
 
     fileStream.pipe(res);
