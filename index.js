@@ -27,7 +27,7 @@ const s3Client = new S3Client({
 
 // Route to fetch the file securely using GET
 app.post("/get-file", async (req, res) => {
-  const fileKey = "hexis/4/demo";
+  const fileKey = "hexis/4/qwerty";
 
   try {
     const headCommand = new HeadObjectCommand({
