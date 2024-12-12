@@ -11,6 +11,7 @@ app.use(express.json());
 
 app.use(cors({
     origin: "https://reactfiledownload.vercel.app", // Replace with your frontend's URL
+    exposedHeaders: ['Content-Disposition'],
     methods: ["GET","POST"], // Allowed methods
   }));
 
