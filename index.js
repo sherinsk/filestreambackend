@@ -51,7 +51,7 @@ app.post("/get-file", async (req, res) => {
 
     // Set response headers
     res.setHeader("Content-Type", contentType);
-    res.setHeader("Content-Disposition", `inline; filename="${fileKey.split("/").pop()}"`);
+    res.setHeader("Content-Disposition", `inline; filename="sherin.jpg"`);
     res.setHeader("Cache-Control", "no-store");
 
     // Stream the file to the response
