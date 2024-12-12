@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-    origin: "http://localhost:5173", // Replace with your frontend's URL
+    origin: "https://reactfiledownload.vercel.app", // Replace with your frontend's URL
     methods: ["GET","POST"], // Allowed methods
   }));
 
